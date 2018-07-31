@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# Rename original config file with postfix tilde and make it read only
+# Yu Shiyang <yu.shiyang@gnayihs.uy>
+
+file="$1"
+if [ -e "$file"~ ]; then
+	echo "error: tilde: $file~ already exists" >&2
+else
+	mv "$file" "$file"~ && cp "$file"~ "$file" && chmod a-r "$file"~
+fi
