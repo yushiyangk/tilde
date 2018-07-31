@@ -7,5 +7,5 @@ file="$1"
 if [ -e "$file"~ ]; then
 	echo "error: tilde: $file~ already exists" >&2
 else
-	mv "$file" "$file"~ && cp "$file"~ "$file" && chmod a-r "$file"~
+	mv "$file" "$file"~ && cp -a "$file"~ "$file" && chmod a-r "$file"~
 fi
