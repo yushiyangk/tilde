@@ -23,7 +23,7 @@ else
 				;;
 			esac
 		done
-	elif [ -d "$file" ]; then
+	elif [ -f "$file" ]; then
 		mv "$file" "$file"~ && cp -a "$file"~ "$file" && chmod a-r "$file"~
 	else
 		echo "Error: tilde: $file is not a file or a directory" >&2
