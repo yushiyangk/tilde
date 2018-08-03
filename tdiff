@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# Run diff on original (with tilde) and current (without tilde)
+# Yu Shiyang <yu.shiyang@gnayihs.uy>
+
+file="$1"
+diff "$file"~ "$file"
+# diff should operate just as well on directories as files
