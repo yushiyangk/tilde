@@ -12,7 +12,7 @@ else
 			read -p "$file is a directory. Copy contents recursively? [yes/NO] " prompt
 			case $prompt in
 				[Yy]* )
-					mv "$file" "$file"~ && cp -a "$file"~ "$file" && chmod -R --preserve-root a-rx,a+X "$file"~
+					mv "$file" "$file"~ && cp -a "$file"~ "$file" && chmod -R --preserve-root a-wx,a+X "$file"~
 					break
 				;;
 				[Nn]* )
@@ -24,7 +24,7 @@ else
 			esac
 		done
 	elif [ -f "$file" ]; then
-		mv "$file" "$file"~ && cp -a "$file"~ "$file" && chmod a-rx "$file"~
+		mv "$file" "$file"~ && cp -a "$file"~ "$file" && chmod a-wx "$file"~
 	else
 		echo "Error: tilde: $file is not a file or a directory" >&2
 	fi
