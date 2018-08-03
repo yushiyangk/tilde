@@ -5,7 +5,27 @@
 
 file="$1"
 if [ -e "$file"~ ]; then
-	echo "error: tilde: $file~ already exists" >&2
+	echo "Error: tilde: $file~ already exists" >&2
 else
-	mv "$file" "$file"~ && cp -a "$file"~ "$file" && chmod a-r "$file"~
+	if [ -d "$file" ]; then
+		while true; do
+			read -p "$file is a directory. Copy contents recursively? [yes/NO] " prompt
+			case $prompt in
+				[Yy]* )
+					mv "$file" "$file"~ && cp -a "$file"~ "$file" && chmod -R a-r "$file"~
+					break
+				;;
+				[Nn]* )
+					break
+				;;
+				* )
+					printf "Please answer 'yes' or 'no'. "
+				;;
+			esac
+		done
+	elif [ -d "$file" ]; then
+		mv "$file" "$file"~ && cp -a "$file"~ "$file" && chmod a-r "$file"~
+	else
+		echo "Error: tilde: $file is not a file or a directory" >&2
+	fi
 fi
